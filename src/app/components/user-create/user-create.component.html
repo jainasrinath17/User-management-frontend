@@ -1,0 +1,45 @@
+<h2>Create User</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>User Name</mat-label>
+    <input matInput formControlName="user_name" required>
+    <mat-error *ngIf="userForm?.get('user_name')?.hasError('required')">User Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="first_name" required>
+    <mat-error *ngIf="userForm?.get('first_name')?.hasError('required')">First Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="last_name" required>
+    <mat-error *ngIf="userForm?.get('last_name')?.hasError('required')">Last Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" required>
+    <mat-error *ngIf="userForm?.get('email')?.hasError('required')">Email is required</mat-error>
+    <mat-error *ngIf="userForm?.get('email')?.hasError('email')">Invalid email format</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="user_status" required>
+      <mat-option value="A">Active</mat-option>
+      <mat-option value="I">Inactive</mat-option>
+      <mat-option value="T">Terminated</mat-option>
+    </mat-select>
+    <mat-error *ngIf="userForm?.get('user_status')?.hasError('required')">Status is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Department</mat-label>
+    <input matInput formControlName="department">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Create</button>
+  <button mat-button color="warn" (click)="router.navigate(['/users'])">Cancel</button>
+</form>
